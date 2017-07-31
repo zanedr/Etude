@@ -4,4 +4,3 @@ import './assets/styles/index.css';
 import App from './src/Components/App/App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();

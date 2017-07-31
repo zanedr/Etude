@@ -1,5 +1,3 @@
-// Update with your config settings.
-
 module.exports = {
 production: {
     client: 'pg',
@@ -12,7 +10,8 @@ production: {
     },
     useNullAsDefault: true,
   },
-  development: {
+
+development: {
     client: 'pg',
     connection: process.env.DATABASE_URL || 'postgres://localhost/etude',
     migrations: {
@@ -23,7 +22,8 @@ production: {
     },
     useNullAsDefault: true,
   },
-  test: {
+
+test: {
     client: 'pg',
     connection: process.env.DATABASE_URL || 'postgres://localhost/testing',
     migrations: {
@@ -34,5 +34,4 @@ production: {
     },
     useNullAsDefault: true,
   },
-
 };

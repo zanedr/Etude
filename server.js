@@ -9,8 +9,6 @@ const app = express();
 
 app.use(bodyParser.json());
 
-// app.use('/assets', express.static(path.join(__dirname, '../client/assets/')));
-
 app.use('/api/v1', router);
 
 app.listen(port, () => {

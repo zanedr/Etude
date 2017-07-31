@@ -3,12 +3,12 @@ const express = require('express');
 const router = express.Router();
 const api = require('./api');
 
-router.get('/songs', api.getSongs);
+router.get('/api/v1/songs', api.getSongs);
 
-router.post('/songs', api.getSongs);
+router.post('/api/v1/songs', api.postSong);
 
-router.patch('/songs', api.getSongs);
+router.patch('/api/v1/songs', api.patchSong);
 
-router.delete('/songs', api.getSongs);
+router.delete('/api/v1/songs', api.deleteSong);
 
 module.exports = router;

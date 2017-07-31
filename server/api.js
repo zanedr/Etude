@@ -77,9 +77,11 @@ const deleteSong = (req, res) => {
     .catch(() => {
       return res.status(500);
     });
-});
-}
+};
 
 module.exports = {
-  getSongs
+  getSongs,
+  postSong,
+  patchSong,
+  deleteSong
 }

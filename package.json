@@ -19,6 +19,8 @@
     "mocha": "^3.4.2",
     "nodemon": "^1.11.0",
     "pg": "^7.0.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {

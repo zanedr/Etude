@@ -4,7 +4,6 @@ const database = require('knex')(configuration);
 
 //**************GET REQUESTS***********************//
 const getSongs = (req, res) => {
-  console.log('yoyoyo')
   res.send('hi dare');
 
   database('songs').select()
@@ -22,7 +21,7 @@ const postSong = (req, res) => {
   const tab = req.body.tab || '';
   const priority = req.body.priority || 5;
   const timestamps = req.body.timestamps || '';
- 
+
   if(!title.length) {
     return res.status(422).send({
         error: 'Please include a song title.',
@@ -74,9 +73,9 @@ const deleteSong = (req, res) => {
       success: `Song entitled ${title} has been deleted from database`,
     });
   })
-    .catch(() => {
-      return res.status(500);
-    });
+  .catch(() => {
+    return res.status(500);
+  });
 };
 
 module.exports = {

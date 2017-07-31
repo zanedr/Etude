@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
 import { SongDisplay } from '../SongDisplay/SongDisplay'
-import { mockSongs } from '../../mock-data/songs.js'
+import { mockSongs } from '../../mocks/songs.js'
 
 export default class App extends Component {
   constructor() {

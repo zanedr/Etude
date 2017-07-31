@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "react-scripts start && nodemon server.js",
     "client": "babel-node start-client.js",
     "server": "babel-node server.js",
     "test": "mocha"
@@ -21,7 +21,6 @@
     "pg": "^7.0.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-music-player": "^1.0.3",
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
@@ -30,6 +29,7 @@
     "babel-loader": "^7.1.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "concurrently": "^3.1.0"
+    "concurrently": "^3.1.0",
+    "react-scripts": "^1.0.10"
   }
 }

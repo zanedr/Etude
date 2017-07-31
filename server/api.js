@@ -1,6 +1,6 @@
-// const environment = process.env.NODE_ENV || 'development';
-// const configuration = require('../knexfile')[environment];
-// const database = require('knex')(configuration);
+const environment = process.env.NODE_ENV || 'development';
+const configuration = require('../knexfile')[environment];
+const database = require('knex')(configuration);
 
 //**************GET REQUESTS***********************//
 const getSongs = (req, res) => {
@@ -14,6 +14,7 @@ const getSongs = (req, res) => {
   .catch(error => res.status(500).send(error));
 }
 
+//**************POST REQUESTS***********************//
 const postSong = (req, res) => {
   const { artist, title, timestamps, audio, tab, priority } = req.body;
 
@@ -25,9 +26,9 @@ const postSong = (req, res) => {
   database('songs')
     .where(database.raw('lower("title")'), title.toLowerCase())
   .then((singleSong) => {
-    if (artistFound[0] && singleSong[0]) {
+    if (!artist && singleSong[0]) {
       return res.status(422).send({
-        error: 'Song is already in the database under that artist',
+        error: 'Song is already in the database under that name, please provide artist name to differentiate',
       });
     } else {
       database('songs').insert({ title,
@@ -42,6 +43,9 @@ const postSong = (req, res) => {
   })
 }
 
+//**************PATCH REQUESTS***********************//
+
+//**************DELETE REQUESTS***********************//
 const deleteSong = (req, res) => {
   const title = req.query.title;
 

@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import { SongDisplay } from '../SongDisplay/SongDisplay'
-import { mockSongs } from '../../mocks/songs.js'
+import ReactMusicPlayer from 'react-music-player';
+
+import { SongDisplay } from '../SongDisplay/SongDisplay';
+import { mockSongs } from '../../mocks/songs.js';
+import { songs } from '../../mocks/player.js';
+import '../../assets/styles/main.css';
+
 
 export default class App extends Component {
   constructor() {
@@ -11,7 +16,7 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-    fetch('api/v1/songs')
+    fetch('/api/v1/songs')
     .then(res => res.text())
     .then(song => console.log(song))
   }
@@ -21,6 +26,7 @@ export default class App extends Component {
       <div className="App">
         <h1>Etude</h1>
         <SongDisplay songs={this.state.songs}/>
+        <ReactMusicPlayer className='music-player' songs={songs} autoplay />
       </div>
     );
   }

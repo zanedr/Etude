@@ -16,34 +16,53 @@ const getSongs = (req, res) => {
 
 //**************POST REQUESTS***********************//
 const postSong = (req, res) => {
-  const { artist, title, timestamps, audio, tab, priority } = req.body;
-
+  const title = req.body.title
+  const artist = req.body.artist || '';
+  const audio = req.body.audio || '';
+  const tab = req.body.tab || '';
+  const priority = req.body.priority || 5;
+  const timestamps = req.body.timestamps || '';
+ 
   if(!title.length) {
     return res.status(422).send({
         error: 'Please include a song title.',
-      });
+    });
   }
-  database('songs')
-    .where(database.raw('lower("title")'), title.toLowerCase())
-  .then((singleSong) => {
-    if (!artist && singleSong[0]) {
-      return res.status(422).send({
-        error: 'Song is already in the database under that name, please provide artist name to differentiate',
-      });
-    } else {
-      database('songs').insert({ title,
-        artist},
-        'id')
-      .then((newArtist) => {
-        return res.status(201).send({
-          success: `Song ${title} added to database.`,
-        });
-      });
-    }
-  })
-}
+  database('songs').insert({ title,
+    artist, timestamps, audio, tab, priority},
+    'id')
+  .then((newArtist) => {
+    return res.status(201).send({
+      success: `Song ${title} added to database.`,
+    });
+  });
+};
 
 //**************PATCH REQUESTS***********************//
+
+const patchSong = (req, res) => {
+  const title = req.body.title
+  const artist = req.body.artist || '';
+  const audio = req.body.audio || '';
+  const tab = req.body.tab || '';
+  const priority = req.body.priority || 5;
+  const timestamps = req.body.timestamps || '';
+  const id = req.body.id;
+
+  database('songs').where('id', id)
+    .update('title', title)
+    .update('artist', artist)
+    .update('audio', audio)
+    .update('tab', tab)
+    .update('priority', priority)
+    .update('timestamps', timestamps)
+    .then(() => {
+      return res.status(201).send({
+        success: `Song entitled ${title} updated to reflect changes.`
+      })
+    })
+
+};
 
 //**************DELETE REQUESTS***********************//
 const deleteSong = (req, res) => {
